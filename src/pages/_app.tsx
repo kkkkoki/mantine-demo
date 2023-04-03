@@ -42,12 +42,19 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         theme={{
           fontFamily: 'Open Sans, sans serif',
           colorScheme,
+          fontSizes: {
+            xs: '8px',
+            sm: '12px',
+            md: '16px',
+            lg: '20px',
+            xl: '24px',
+          },
           spacing: {
-            xs: '1rem',
-            sm: '1.2rem',
-            md: '1.8rem',
-            lg: '2.2rem',
-            xl: '2.8rem',
+            xs: '4px',
+            sm: '8px',
+            md: '12px',
+            lg: '16px',
+            xl: '20px',
           },
           breakpoints: {
             xs: '400',

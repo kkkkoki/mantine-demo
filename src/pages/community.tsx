@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
+import { NextPageWithLayout } from './_app';
 import Layout from '@/components/base/Layout/Layout';
 
-const Community = () => {
+const Community: NextPageWithLayout = () => {
   return <div>Community Component</div>;
 };
 
