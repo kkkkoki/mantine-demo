@@ -15,17 +15,13 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
-  defaultColorSchema: ColorScheme;
 };
 
-export default function App({
-  Component,
-  pageProps,
-  defaultColorSchema,
-}: AppPropsWithLayout) {
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
-  const [colorScheme, setColorScheme] =
-    useState<ColorScheme>(defaultColorSchema);
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(
+    pageProps.colorScheme
+  );
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme =
       value || (colorScheme === 'dark' ? 'light' : 'dark');
@@ -70,9 +66,12 @@ export default function App({
 
 App.getInitialProps = async (appContext: AppContext) => {
   const appProps = await NextApp.getInitialProps(appContext);
-  console.log(appProps);
-  return {
+  appProps.pageProps = {
     ...appProps,
     colorScheme: getCookie('mantine-color-scheme', appContext.ctx) || 'light',
+  };
+
+  return {
+    ...appProps,
   };
 };
