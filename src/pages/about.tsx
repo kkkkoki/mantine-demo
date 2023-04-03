@@ -1,5 +1,4 @@
-import React, { ReactElement } from 'react';
-import Link from 'next/link';
+import { ReactElement } from 'react';
 import Layout from '@/components/base/Layout/Layout';
 
 const About = () => {
