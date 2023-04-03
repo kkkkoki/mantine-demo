@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Link from 'next/link';
+import Layout from '@/components/base/Layout/Layout';
 
-const community = () => {
-  return (
-    <>
-      <div>Community</div>
-      <p>
-        <Link href="/">Top</Link>
-      </p>
-      <p>
-        <Link href="/home">Home</Link>
-      </p>
-    </>
-  );
+const Community = () => {
+  return <div>Community Component</div>;
 };
 
-export default community;
+Community.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
+
+export default Community;

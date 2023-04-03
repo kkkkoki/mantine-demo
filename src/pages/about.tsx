@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Link from 'next/link';
+import Layout from '@/components/base/Layout/Layout';
 
-const about = () => {
-  return (
-    <>
-      <div>About</div>
-      <p>
-        <Link href="/">Top</Link>
-      </p>
-      <p>
-        <Link href="/home">Home</Link>
-      </p>
-    </>
-  );
+const About = () => {
+  return <div>About Component</div>;
 };
 
-export default about;
+About.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
+
+export default About;

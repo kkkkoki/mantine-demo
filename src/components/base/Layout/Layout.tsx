@@ -5,6 +5,7 @@ import HeaderSearch from '../Header/Header';
 import DrawerComponent from '@/components/base/Drawer/Drawer';
 
 const links = [
+  { link: '/home', label: 'ホーム' },
   { link: '/about', label: 'サイトについて' },
   { link: '/community', label: 'コミュニティ' },
 ];
