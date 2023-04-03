@@ -1,11 +1,12 @@
 import { ReactElement, ReactNode, useState } from 'react';
 import { NextPage } from 'next';
-import { AppProps } from 'next/app';
+import NextApp, { AppContext, AppProps } from 'next/app';
 import {
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider,
 } from '@mantine/core';
+import { getCookie, setCookie } from 'cookies-next';
 import '@/styles/globals.css';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -14,13 +15,25 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
+  defaultColorSchema: ColorScheme;
 };
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({
+  Component,
+  pageProps,
+  defaultColorSchema,
+}: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+  const [colorScheme, setColorScheme] =
+    useState<ColorScheme>(defaultColorSchema);
+  const toggleColorScheme = (value?: ColorScheme) => {
+    const nextColorScheme =
+      value || (colorScheme === 'dark' ? 'light' : 'dark');
+    setColorScheme(nextColorScheme);
+    setCookie('mantine-color-scheme', nextColorScheme, {
+      maxAge: 60 * 60 * 24 * 30,
+    });
+  };
 
   return (
     <ColorSchemeProvider
@@ -54,3 +67,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     </ColorSchemeProvider>
   );
 }
+
+App.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await NextApp.getInitialProps(appContext);
+  console.log(appProps);
+  return {
+    ...appProps,
+    colorScheme: getCookie('mantine-color-scheme', appContext.ctx) || 'light',
+  };
+};
