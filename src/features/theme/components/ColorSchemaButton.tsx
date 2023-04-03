@@ -8,7 +8,7 @@ import '@theme-toggles/react/css/Within.css';
 const useStyles = createStyles((theme) => ({
   toggleColorSchemaBtn: {
     display: 'flex',
-    fontSize: 40,
+    fontSize: 36,
     color:
       theme.colorScheme === 'dark'
         ? theme.colors.orange[5]
