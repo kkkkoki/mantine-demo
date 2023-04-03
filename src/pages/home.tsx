@@ -10,7 +10,7 @@ const Home: NextPageWithLayout = () => {
 
   return (
     <>
-      <div>Home</div>
+      <div>Home Component</div>
       <Drawer
         opened={opened}
         onClose={toggle}

@@ -93,7 +93,7 @@ const HeaderSearch = ({ links, drawerToggle, opened }: Props) => {
     <Header className={classes.header} height={56}>
       <div className={classes.inner}>
         <Link href="/" className={classes.logo}>
-          <MantineLogo size={28} />
+          <h1>LOGO</h1>
         </Link>
 
         <Group>
