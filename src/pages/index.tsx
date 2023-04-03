@@ -1,7 +1,5 @@
 import { ReactElement } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
-import { createStyles } from '@mantine/core';
 import { NextPageWithLayout } from './_app';
 import Layout from '@/components/base/Layout/Layout';
 
